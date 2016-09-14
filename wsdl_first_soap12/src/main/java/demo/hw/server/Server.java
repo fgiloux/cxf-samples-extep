@@ -19,7 +19,11 @@
 
 package demo.hw.server;
 
+
+//import javax.xml.namespace.QName;
+
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
+import org.apache.cxf.wsdl.WSDLConstants;
 
 public class Server {
 
@@ -30,9 +34,12 @@ public class Server {
         System.out.println("Starting Server");
         JaxWsServerFactoryBean svrFactory = new JaxWsServerFactoryBean();
         svrFactory.setWsdlLocation(wsdl);
+        //svrFactory.setServiceName(new QName("http://apache.org/hello_world_soap12_http", "SOAPService"));
+        //svrFactory.setEndpointName(new QName("http://apache.org/hello_world_soap12_http", "SoapPort"));
         svrFactory.setAddress(address);
         svrFactory.setServiceBean(new GreeterImpl());
-        svrFactory.create();
+        svrFactory.setBindingId(WSDLConstants.NS_BINDING_XML);
+        svrFactory.create().start();
     }
 
     public static void main(String args[]) throws Exception {
