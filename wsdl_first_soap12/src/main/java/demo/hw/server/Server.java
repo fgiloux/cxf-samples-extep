@@ -23,7 +23,6 @@ package demo.hw.server;
 //import javax.xml.namespace.QName;
 
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
-import org.apache.cxf.wsdl.WSDLConstants;
 
 public class Server {
 
@@ -38,7 +37,7 @@ public class Server {
         //svrFactory.setEndpointName(new QName("http://apache.org/hello_world_soap12_http", "SoapPort"));
         svrFactory.setAddress(address);
         svrFactory.setServiceBean(new GreeterImpl());
-        svrFactory.setBindingId(WSDLConstants.NS_BINDING_XML);
+        svrFactory.setBindingId("http://cxf.apache.org/bindings/xformat");
         svrFactory.create().start();
     }
 
